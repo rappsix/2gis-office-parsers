@@ -247,18 +247,14 @@ def search_email_yandex_selenium(driver, company_name):
 
 def setup_driver():
     options = uc.ChromeOptions()
-    options.add_argument("--headless=new")  # без окна
-    options.add_argument("--no-sandbox")    # для root и серверов
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--disable-extensions")
+    # options.add_argument("--headless=new")  # убрали headless, видимый браузер
     options.add_argument("--start-maximized")
-    options.add_argument("--disable-background-timer-throttling")
-    options.add_argument("--disable-backgrounding-occluded-windows")
-    options.add_argument("--disable-renderer-backgrounding")
-    print("🚀 Запуск браузера (headless)...")
+    options.add_argument("--disable-web-security")
+    options.add_argument("--disable-features=VizDisplayCompositor")
+    print("🚀 Запуск браузера (видимый режим)...")
     driver = uc.Chrome(options=options)
     return driver
+
 
 def main():
     requests.packages.urllib3.disable_warnings()
